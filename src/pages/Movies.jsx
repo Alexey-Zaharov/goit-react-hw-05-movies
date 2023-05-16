@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  //   const [filter, setFilter] = useState('');
   const [searchData, setSearchData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
