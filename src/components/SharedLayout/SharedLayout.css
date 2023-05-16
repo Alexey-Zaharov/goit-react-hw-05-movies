@@ -1,0 +1,29 @@
+.container {
+  padding: 30px 20px 30px 20px;
+}
+
+.header {
+  display: flex;
+  height: 70px;
+  background-color: aliceblue;
+  border-bottom: 3px solid black;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navigationList {
+  display: flex;
+  gap: 20px;
+}
+
+.link {
+  width: 70px;
+  color: black;
+}
+
+.link.active {
+  background-color: orange;
+}
