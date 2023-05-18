@@ -1,13 +1,20 @@
-import { Outlet, Link, useParams, useLocation } from 'react-router-dom';
+import {
+  Outlet,
+  Link,
+  useParams,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import { useEffect, useState, useRef, Suspense } from 'react';
 import React from 'react';
 import MovieInfo from '../components/MovieInfo/MovieInfo';
 
 const MovieDetails = () => {
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(
@@ -17,19 +24,22 @@ const MovieDetails = () => {
         if (response.ok) {
           return response.json();
         }
+        if (!response.ok) {
+          navigate('/movies', { replace: true });
+        }
       })
       .then(setMovie)
       .catch(error => window.alert(error));
-  }, [movieId]);
-  const { poster_path, title, overview, genres } = movie;
+  }, [movieId, navigate]);
   return (
     <div>
+      {/* {movieId && <Navigate to="/movies" />} */}
       {movie && (
         <MovieInfo
-          poster_path={poster_path}
-          title={title}
-          overview={overview}
-          genres={genres}
+          poster_path={movie.poster_path}
+          title={movie.title}
+          overview={movie.overview}
+          genres={movie.genres}
           backLink={backLink.current}
         />
       )}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Navigate } from 'react-router-dom';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -19,6 +19,7 @@ const Home = () => {
   }, []);
   return (
     <div>
+      {movies && <Navigate to="/" />}
       <h1>Tranding Today</h1>
       <ul>
         {movies.map(({ id, original_title }) => {
