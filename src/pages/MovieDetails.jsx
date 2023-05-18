@@ -33,7 +33,6 @@ const MovieDetails = () => {
   }, [movieId, navigate]);
   return (
     <div>
-      {/* {movieId && <Navigate to="/movies" />} */}
       {movie && (
         <MovieInfo
           poster_path={movie.poster_path}
